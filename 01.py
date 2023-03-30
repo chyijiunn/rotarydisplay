@@ -34,30 +34,22 @@ previous_value = True
 button_down = False
 
 def get_files():
-    """ Get a list of Python files in the root folder of the Pico """
-    
     files = listdir()
     menu = []
     for file in files:
-        if file.endswith(".py"):
+        if file.endswith(".py") and file.startswith("0"):
             menu.append(file)
     return(menu)
 
-
 def show_menu(menu):
-    """ Shows the menu on the screen"""
-    
     # bring in the global variables
     global line, highlight, shift, list_length
-
     # menu variables
     item = 1
     line = 1
     line_height = 10
-
     # clear the display
     oled.fill_rect(0,0,width,height,0)
-
     # Shift the list of files so that it shows on the display
     list_length = len(menu)
     short_list = menu[shift:shift+total_lines]
